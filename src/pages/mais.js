@@ -14,6 +14,8 @@ import {
 
 import { Button } from 'react-native-paper';
 
+import Ionicons from 'react-native-vector-icons/Ionicons';
+
 function Mais({ navigation }) {
     return (
         <>
@@ -27,6 +29,7 @@ function Mais({ navigation }) {
                     <Button mode="contained" color={"#ffff"}
                         style={styles.buttonSair}
                         onPress={() => navigation.navigate('Login')}>
+                        <Ionicons name={'log-out'} size={30}/>        
                         Sair</Button>
                 </ScrollView>
             </SafeAreaView>
@@ -46,8 +49,11 @@ const styles = StyleSheet.create({
     },
     buttonSair: {
         alignItems: "flex-start",
+        textAlign:"center",
+        alignContent:"center",
         width: "100%",
-        marginLeft: 10
+        marginLeft: 10,
+        marginTop: 10
     }
 });
 

@@ -16,14 +16,13 @@ import {
 
 import { TextInput, Button } from 'react-native-paper';
 
-class Login extends React.Component {
+
+class ComponentLogin extends React.Component {
 
     state = { showIndicator: false };
 
-    static navigationOptions = {
-        tabBarVisible: false
-    }
     onButtonPress = () => {
+
 
         this.setState({
             showIndicator: true,
@@ -33,7 +32,7 @@ class Login extends React.Component {
     render() {
         let that = this;
         const { navigate } = this.props.navigation;
-        
+
         if (this.state.showIndicator == false) {
             return (
 
@@ -60,8 +59,8 @@ class Login extends React.Component {
             );
 
         } else {
-            setTimeout(function () { that.setState({ showIndicator: false }) }, 2000);
-            setTimeout(function () { navigate('PaginaPrincipal') }, 2000);
+            setTimeout(function () { that.setState({ showIndicator: false }) }, 3000);
+            setTimeout(function () { navigate('PaginaPrincipal') }, 3000);
             return (
 
                 <>
@@ -131,4 +130,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Login;
+export default ComponentLogin;

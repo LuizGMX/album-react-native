@@ -10,22 +10,29 @@ import {
     ActivityIndicator
 } from 'react-native';
 
+import { usePromiseTracker } from "react-promise-tracker";
+const { promiseInProgress } = usePromiseTracker();
+
 class PaginaPrincipal extends React.Component {
 
     state = {
         imagens: [],
     };
 
+   
     UNSAFE_componentWillMount() {
-        fetch('https://jsonplaceholder.typicode.com/photos')
+        trackPromise(
+            fetch('https://jsonplaceholder.typicode.com/photos')
             .then((response) => {
                 response.json().then((data) => {
                     this.setState({
                         imagens: data
                     });
                 });
-            });
+            })
+        )
     }
+   
 
     renderImagens() {
         return this.state.imagens.map(imagens => <Image key={imagens.id} style={styles.imagens} source={{ uri: imagens.url }} />);
@@ -34,8 +41,17 @@ class PaginaPrincipal extends React.Component {
     render() {
 
         return (
-
             <>
+                {
+                    (promiseInProgress === true) ?
+                        <h3>Hey I'm a spinner loader wannabe !!!</h3>
+                        :
+                        null
+                }
+            </>
+            <>
+
+
                 <StatusBar barStyle="dark-content" />
                 <SafeAreaView>
                     <ScrollView contentInsetAdjustmentBehavior="automatic">
