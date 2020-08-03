@@ -10,8 +10,6 @@ import {
     ActivityIndicator
 } from 'react-native';
 
-import api from '../api';
-
 class PaginaPrincipal extends React.Component {
 
     state = {
@@ -29,8 +27,8 @@ class PaginaPrincipal extends React.Component {
             });
     }
 
-    renderImagens() {        
-        return this.state.imagens.map(imagens => <Image key={imagens.id} style={styles.imagens} source={{uri:imagens.url}} />);
+    renderImagens() {
+        return this.state.imagens.map(imagens => <Image key={imagens.id} style={styles.imagens} source={{ uri: imagens.url }} />);
     }
 
     render() {
@@ -38,11 +36,10 @@ class PaginaPrincipal extends React.Component {
         return (
 
             <>
-
                 <StatusBar barStyle="dark-content" />
                 <SafeAreaView>
                     <ScrollView contentInsetAdjustmentBehavior="automatic">
-                        <View style={styles.sideBySideImages}>                            
+                        <View style={styles.sideBySideImages}>
                             {this.renderImagens()}
                             <Image />
                         </View>
@@ -52,7 +49,6 @@ class PaginaPrincipal extends React.Component {
         )
     }
 }
-
 
 const styles = StyleSheet.create({
     imagens: {

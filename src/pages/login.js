@@ -17,46 +17,78 @@ import {
 import { TextInput, Button } from 'react-native-paper';
 
 
-class Login extends Component {     
+class Login extends React.Component {
 
-    
- renderLoading() {
-    
-    logar()
-    
-        return (
-            <ActivityIndicator size="large" color="black" style={{
-                position: 'absolute', left: 0, right: 0, bottom: 0, top: 0
-            }} />
-        )          
-    
-      function  logar (){
-           // setTimeout(() => this.props.navigation.navigate('PaginaPrincipal'), 5500)
-        }
-    
-}
+    state = { showIndicator: false };
+
+    onButtonPress = () => {
+
+
+        this.setState({
+            showIndicator: true,
+        });
+    };
 
     render() {
-        return (
-            <>
-                <StatusBar barStyle="dark-content" />
-                <SafeAreaView>
-                    <ScrollView
-                        contentInsetAdjustmentBehavior="automatic"
-                        style={styles.scrollView}>
-                        <Image style={styles.logo} source={{ uri: 'https://d1icd6shlvmxi6.cloudfront.net/gsc/51DZ9F/d7/f8/d2/d7f8d28fbec943bdad56fce180f343a6/images/login/u1.jpg?token=43ba675faeea0b2e152d571b0f5d9634dbba8371a7d1a8c6fbef673dea3ffc12' }} />
-                    </ScrollView>
-                    <Text style={styles.text}>Para acessar o app informe seu <Text style={styles.textBold}>email</Text> </Text>
-                    <TextInput style={styles.textInput} placeholder="Email" theme={{ colors: { primary: "#009688", background: Colors.white } }} />
-                    <Text style={styles.text}>Agora digite sua <Text style={styles.textBold}>senha</Text></Text>
+        let that = this;
+        const { navigate } = this.props.navigation;
 
-                    <TextInput style={styles.textInput} placeholder="Senha" theme={{ colors: { primary: "#009688", background: Colors.white } }} />
-                    <Button style={styles.buttonAcessar} mode="contained" color={"#D73F8C"} onPress={()=>renderLoading}>Acessar</Button>
-                    {this.renderLoading()}
-                </SafeAreaView>
-            </>
-        );
+
+
+        if (this.state.showIndicator == false) {
+            return (
+
+                <>
+                    <StatusBar barStyle="dark-content" />
+                    <SafeAreaView>
+                    
+                        <ScrollView
+                            contentInsetAdjustmentBehavior="automatic"
+                            style={styles.scrollView}>
+                            <Image style={styles.logo} source={{ uri: 'https://d1icd6shlvmxi6.cloudfront.net/gsc/51DZ9F/d7/f8/d2/d7f8d28fbec943bdad56fce180f343a6/images/login/u1.jpg?token=43ba675faeea0b2e152d571b0f5d9634dbba8371a7d1a8c6fbef673dea3ffc12' }} />
+                        </ScrollView>
+                        <Text style={styles.text}>Para acessar o app informe seu <Text style={styles.textBold}>email</Text> </Text>
+                        <TextInput style={styles.textInput} placeholder="Email" theme={{ colors: { primary: "#009688", background: Colors.white } }} />
+                        <Text style={styles.text}>Agora digite sua <Text style={styles.textBold}>senha</Text></Text>
+
+                        <TextInput style={styles.textInput} placeholder="Senha" theme={{ colors: { primary: "#009688", background: Colors.white } }} />
+                        <Button style={styles.buttonAcessar}
+                            mode="contained"
+                            color={"#D73F8C"}
+                            onPress={this.onButtonPress} >Acessar</Button>
+                    </SafeAreaView>
+                </>
+            );
+
+        } else {
+            setTimeout(function () { that.setState({ showIndicator: false }) }, 3000);
+            setTimeout(function () { navigate('PaginaPrincipal') }, 3000);
+            return (
+
+                <>
+                    <StatusBar barStyle="dark-content" />
+                    <SafeAreaView>
+                        <ActivityIndicator size="large" color={Colors.black}  />
+                        <ScrollView
+                            contentInsetAdjustmentBehavior="automatic"
+                            style={styles.scrollView}>
+                            <Image style={styles.logo} source={{ uri: 'https://d1icd6shlvmxi6.cloudfront.net/gsc/51DZ9F/d7/f8/d2/d7f8d28fbec943bdad56fce180f343a6/images/login/u1.jpg?token=43ba675faeea0b2e152d571b0f5d9634dbba8371a7d1a8c6fbef673dea3ffc12' }} />
+                        </ScrollView>
+                        <Text style={styles.text}>Para acessar o app informe seu <Text style={styles.textBold}>email</Text> </Text>
+                        <TextInput style={styles.textInput} placeholder="Email" theme={{ colors: { primary: "#009688", background: Colors.white } }} />
+                        <Text style={styles.text}>Agora digite sua <Text style={styles.textBold}>senha</Text></Text>
+                        <TextInput style={styles.textInput} placeholder="Senha" theme={{ colors: { primary: "#009688", background: Colors.white } }} />
+                        <Button style={styles.buttonAcessar}
+                            mode="contained"
+                            color={"#D73F8C"}
+                            onPress={this.onButtonPress} >Acessar</Button>
+                    </SafeAreaView>
+                </>
+            );
+
+        }
     }
+
 }
 
 const styles = StyleSheet.create({
@@ -91,6 +123,12 @@ const styles = StyleSheet.create({
         marginTop: 110,
         height: 70,
         justifyContent: "center",
+    },
+    loading: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: 80
     }
 });
 

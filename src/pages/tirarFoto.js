@@ -21,11 +21,11 @@ class TirarFoto extends PureComponent {
             buttonNegative: 'Não Permitir',
           }}
         />
-        
+
         <Text style={styles.text}>Cancelar</Text>
         <View style={{ flex: 0, flexDirection: 'row', justifyContent: 'center' }}>
           <TouchableOpacity onPress={this.takePicture.bind(this)} style={styles.capture}>
-           
+
           </TouchableOpacity>
         </View>
       </View>
@@ -55,21 +55,21 @@ const styles = StyleSheet.create({
   capture: {
     flex: 0,
     backgroundColor: '#fff',
-    height:50,
-    width:50,
-    borderRadius:50,
+    height: 50,
+    width: 50,
+    borderRadius: 50,
     padding: 15,
     paddingHorizontal: 20,
     alignSelf: 'center',
     margin: 20,
-    justifyContent:'center'
+    justifyContent: 'center'
   },
-  text:{
+  text: {
     color: "#ffff",
     marginTop: "0%",
-    flex: 0, 
-    paddingLeft:"10%",
-    marginVertical:"-15%"
+    flex: 0,
+    paddingLeft: "10%",
+    marginVertical: "-15%"
 
   }
 });

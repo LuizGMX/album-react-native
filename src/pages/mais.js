@@ -25,9 +25,9 @@ function Mais({ navigation }) {
                     <Text style={styles.text}>Teste Técnico CTIS</Text>
                     <Text style={styles.text}>Versão 1.0.2 (Número da build 10)</Text>
                     <Button mode="contained" color={"#ffff"}
-                     style={styles.buttonSair}
-                     onPress={() => navigation.navigate('Login')}>
-                     Sair</Button>
+                        style={styles.buttonSair}
+                        onPress={() => navigation.navigate('Login')}>
+                        Sair</Button>
                 </ScrollView>
             </SafeAreaView>
         </>
@@ -50,6 +50,5 @@ const styles = StyleSheet.create({
         marginLeft: 10
     }
 });
-
 
 export default Mais;

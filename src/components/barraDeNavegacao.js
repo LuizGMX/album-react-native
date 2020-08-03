@@ -14,10 +14,10 @@ function BarraDeNavegacao() {
   return (
     <Tab.Navigator>
       <Tab.Screen name="Login" component={Login} />
-      <Tab.Screen name="PaginaPrincipal" component={PaginaPrincipal} options={{tabBarLabel:'Feed de Imagens'}} />
-      <Tab.Screen name="TirarFoto" component={TirarFoto} options={{tabBarLabel:'Tirar Uma Foto'}} />
+      <Tab.Screen name="PaginaPrincipal" component={PaginaPrincipal} options={{ tabBarLabel: 'Feed de Imagens' }} />
+      <Tab.Screen name="TirarFoto" component={TirarFoto} options={{ tabBarLabel: 'Tirar Uma Foto' }} />
       <Tab.Screen name="Mais" component={Mais}
-        options={{tabBarLabel: 'Mais'}} />        
+        options={{ tabBarLabel: 'Mais' }} />
     </Tab.Navigator>
   );
 }
