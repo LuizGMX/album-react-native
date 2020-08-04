@@ -106,7 +106,7 @@ class Login extends React.Component {
                         <ScrollView
                             contentInsetAdjustmentBehavior="automatic"
                             style={styles.scrollView}>
-                            <Image style={styles.logo} source={{ uri: 'https://d1icd6shlvmxi6.cloudfront.net/gsc/51DZ9F/d7/f8/d2/d7f8d28fbec943bdad56fce180f343a6/images/login/u1.jpg?token=43ba675faeea0b2e152d571b0f5d9634dbba8371a7d1a8c6fbef673dea3ffc12' }} />
+                            <Image style={styles.logo} source={require('../assets/logo.png')} />
                         </ScrollView>
                         <Text style={styles.text}>Para acessar o app informe seu <Text style={styles.textBold}>email</Text> </Text>
                         <TextInput style={styles.textInput} placeholder="Email" theme={{ colors: { primary: "#009688", background: Colors.white } }} />
