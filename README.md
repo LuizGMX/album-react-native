@@ -1,6 +1,6 @@
 ## ****Album de Fotos feito Com ReactNative****
 
-Este App foi desenvolvido utilizando o React Native, e sua navegação se da via React Navigation ele possui 4 telas, sendo elas:
+Este App foi desenvolvido utilizando o React Native, e sua navegação é feita através do React Navigation ele possui 4 telas, sendo elas:
 
  1. Login
  2. Feed de Imagens
