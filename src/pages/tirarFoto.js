@@ -14,6 +14,7 @@ class TirarFoto extends PureComponent {
           style={styles.preview}
           type={RNCamera.Constants.Type.back}
           flashMode={RNCamera.Constants.FlashMode.on}
+          captureAudio={false}
           androidCameraPermissionOptions={{
             title: 'Permissão para utilizar a câmera',
             message: 'Precissamos da sua autorização para utilizar a câmera',

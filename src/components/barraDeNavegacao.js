@@ -15,27 +15,41 @@ const Stack = createStackNavigator();
 function BarraDeNavegacao() {
   return (
     <Tab.Navigator initialRouteName="Login">
-    <Stack.Screen name="Login" component={Login} options={{tabBarVisible:false}}/>
-      <Tab.Screen 
-      name="PaginaPrincipal"
-       component={PaginaPrincipal}
-        options={{ tabBarLabel: 'Feed de Imagens',
-        tabBarIcon: ({ focused, color, size }) => {
-          return <Ionicons name={'logo-rss'} size={size} color={color} />;
-          }}} />
-      <Tab.Screen name="TirarFoto" 
-      component={TirarFoto} 
-      options={{ tabBarLabel: 'Tirar Uma Foto',
-      tabBarIcon: ({ focused, color, size }) => {
-        return <Ionicons name={'camera'} size={size} color={color} />;
-        } }} />
+      <Tab.Screen name="Login"
+        component={Login}
+        options={{
+          tabBarVisible: false,
+          tabBarIcon: ({ focused, color, size }) => {
+            return <Ionicons name={'log-in'} size={size} color={color} />;
+          }
+        }}
+      />
+      <Tab.Screen
+        name="PaginaPrincipal"
+        component={PaginaPrincipal}
+        options={{
+          tabBarLabel: 'Feed de Imagens',
+          tabBarIcon: ({ focused, color, size }) => {
+            return <Ionicons name={'logo-rss'} size={size} color={color} />;
+          }
+        }} />
+      <Tab.Screen name="TirarFoto"
+        component={TirarFoto}
+        options={{
+          tabBarLabel: 'Tirar Uma Foto',
+          tabBarIcon: ({ focused, color, size }) => {
+            return <Ionicons name={'camera'} size={size} color={color} />;
+          }
+        }} />
       <Tab.Screen name="Mais" component={Mais}
-        options={{ tabBarLabel: 'Mais',
-        tabBarIcon: ({ focused, color, size }) => {
-          return <Ionicons name={'ellipsis-horizontal'} size={size} color={color} />;
-          } }} />
+        options={{
+          tabBarLabel: 'Mais',
+          tabBarIcon: ({ focused, color, size }) => {
+            return <Ionicons name={'ellipsis-horizontal'} size={size} color={color} />;
+          }
+        }} />
     </Tab.Navigator>
-   
+
   );
 }
 

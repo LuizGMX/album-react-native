@@ -17,7 +17,7 @@ const MyTheme = {
 function App() {
 
   return (
-    <>    
+    <>
       <NavigationContainer theme={MyTheme}>
         <BarraDeNavegacao />
       </NavigationContainer>

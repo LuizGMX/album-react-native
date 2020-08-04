@@ -6,12 +6,9 @@ import {
     ScrollView,
     View,
     Image,
-    StatusBar,
-    ActivityIndicator
+    StatusBar
 } from 'react-native';
 
-import { usePromiseTracker } from "react-promise-tracker";
-const { promiseInProgress } = usePromiseTracker();
 
 class PaginaPrincipal extends React.Component {
 
@@ -19,10 +16,10 @@ class PaginaPrincipal extends React.Component {
         imagens: [],
     };
 
-   
+
     UNSAFE_componentWillMount() {
-        trackPromise(
-            fetch('https://jsonplaceholder.typicode.com/photos')
+
+        fetch('https://jsonplaceholder.typicode.com/photos')
             .then((response) => {
                 response.json().then((data) => {
                     this.setState({
@@ -30,28 +27,18 @@ class PaginaPrincipal extends React.Component {
                     });
                 });
             })
-        )
+
     }
-   
+
 
     renderImagens() {
-        return this.state.imagens.map(imagens => <Image key={imagens.id} style={styles.imagens} source={{ uri: imagens.url }} />);
+        return this.state.imagens.slice(0, 49).map(imagens => <Image key={imagens.id} style={styles.imagens} source={{ uri: imagens.url }} />);
     }
 
     render() {
 
         return (
             <>
-                {
-                    (promiseInProgress === true) ?
-                        <h3>Hey I'm a spinner loader wannabe !!!</h3>
-                        :
-                        null
-                }
-            </>
-            <>
-
-
                 <StatusBar barStyle="dark-content" />
                 <SafeAreaView>
                     <ScrollView contentInsetAdjustmentBehavior="automatic">

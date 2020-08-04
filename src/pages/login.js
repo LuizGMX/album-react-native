@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import {
     SafeAreaView,
@@ -7,7 +7,8 @@ import {
     Image,
     Text,
     StatusBar,
-    ActivityIndicator
+    ActivityIndicator,
+    KeyboardAvoidingView
 } from 'react-native';
 
 import {
@@ -18,43 +19,77 @@ import { TextInput, Button } from 'react-native-paper';
 
 class Login extends React.Component {
 
-    state = { showIndicator: false };
+    state = { showIndicator: false, email: "", senha: "" };
 
     static navigationOptions = {
         tabBarVisible: false
     }
     onButtonPress = () => {
 
-        this.setState({
-            showIndicator: true,
-        });
+        if (this.state.email.trim() === "" || this.state.senha.trim() === "") {
+            if (this.state.email.trim() === "" && this.state.senha.trim() === "") {
+                this.setState(() => ({
+                    nameErrorEmail: "O email é obrigatório",
+                    nameErrorSenha: "A senha é obrigatória"
+                }
+                ));
+            } else if (this.state.email.trim() === "") {
+                this.setState(() => ({ nameErrorEmail: "O email é obrigatório" }));
+            } if (this.state.senha.trim() === "") {
+                this.setState(() => ({ nameErrorSenha: "A senha é obrigatória" }));
+            }
+
+        } else {
+            this.setState(() => ({ nameError: null, showIndicator: true, }));
+        }
     };
 
     render() {
         let that = this;
         const { navigate } = this.props.navigation;
-        
+
         if (this.state.showIndicator == false) {
             return (
 
                 <>
                     <StatusBar barStyle="dark-content" />
                     <SafeAreaView>
-                    
-                        <ScrollView
-                            contentInsetAdjustmentBehavior="automatic"
-                            style={styles.scrollView}>
-                            <Image style={styles.logo} source={{ uri: 'https://d1icd6shlvmxi6.cloudfront.net/gsc/51DZ9F/d7/f8/d2/d7f8d28fbec943bdad56fce180f343a6/images/login/u1.jpg?token=43ba675faeea0b2e152d571b0f5d9634dbba8371a7d1a8c6fbef673dea3ffc12' }} />
-                        </ScrollView>
-                        <Text style={styles.text}>Para acessar o app informe seu <Text style={styles.textBold}>email</Text> </Text>
-                        <TextInput style={styles.textInput} placeholder="Email" theme={{ colors: { primary: "#009688", background: Colors.white } }} />
-                        <Text style={styles.text}>Agora digite sua <Text style={styles.textBold}>senha</Text></Text>
+                        <KeyboardAvoidingView
+                            behavior={Platform.OS == "ios" ? "padding" : "height"}
+                            style={styles.container}
+                        >
+                            <ScrollView
+                                contentInsetAdjustmentBehavior="automatic"
+                                style={styles.scrollView}>
+                                <Image style={styles.logo} source={{ uri: 'https://d1icd6shlvmxi6.cloudfront.net/gsc/51DZ9F/d7/f8/d2/d7f8d28fbec943bdad56fce180f343a6/images/login/u1.jpg?token=43ba675faeea0b2e152d571b0f5d9634dbba8371a7d1a8c6fbef673dea3ffc12' }} />
 
-                        <TextInput style={styles.textInput} placeholder="Senha" theme={{ colors: { primary: "#009688", background: Colors.white } }} />
-                        <Button style={styles.buttonAcessar}
-                            mode="contained"
-                            color={"#D73F8C"}
-                            onPress={this.onButtonPress} >Acessar</Button>
+                                <Text style={styles.text}>Para acessar o app informe seu <Text style={styles.textBold}>email</Text> </Text>
+                                <TextInput
+                                    style={styles.textInput}
+                                    placeholder="Email"
+                                    theme={{ colors: { primary: "#009688", background: Colors.white } }}
+                                    onChangeText={email => this.setState({ email })}
+                                    value={this.state.email}
+                                />
+                                {!!this.state.nameErrorEmail && (
+                                    <Text style={styles.error}>{this.state.nameErrorEmail}</Text>
+                                )}
+                                <Text style={styles.text}>Agora digite sua <Text style={styles.textBold}>senha</Text></Text>
+
+                                <TextInput style={styles.textInput}
+                                    placeholder="Senha"
+                                    theme={{ colors: { primary: "#009688", background: Colors.white } }}
+                                    onChangeText={senha => this.setState({ senha })}
+                                    value={this.state.senha} />
+                                {!!this.state.nameErrorSenha && (
+                                    <Text style={styles.error}>{this.state.nameErrorSenha}</Text>
+                                )}
+                                <Button style={styles.buttonAcessar}
+                                    mode="contained"
+                                    color={"#D73F8C"}
+                                    onPress={this.onButtonPress} >Acessar</Button>
+                            </ScrollView>
+                        </KeyboardAvoidingView>
                     </SafeAreaView>
                 </>
             );
@@ -67,7 +102,7 @@ class Login extends React.Component {
                 <>
                     <StatusBar barStyle="dark-content" />
                     <SafeAreaView>
-                        <ActivityIndicator size="large" color={Colors.black}  />
+                        <ActivityIndicator size="large" color={Colors.black} />
                         <ScrollView
                             contentInsetAdjustmentBehavior="automatic"
                             style={styles.scrollView}>
@@ -119,7 +154,7 @@ const styles = StyleSheet.create({
         marginRight: 42
     },
     buttonAcessar: {
-        marginTop: 110,
+        marginTop: 163,
         height: 70,
         justifyContent: "center",
     },
@@ -128,6 +163,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         height: 80
+    },
+    error: {
+        color: "red",
+        marginLeft: 10,
+        marginTop: 10
     }
 });
 
